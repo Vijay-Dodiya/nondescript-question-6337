@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up Page</title>
+    <style>
+      .signinpage {
+        width: 100%;
+        display: flex;
+        margin: auto;
+        justify-content: space-between;
+      }
+      .image_for_sign_in_page {
+        width: 50%;
+      }
+      .image_for_sign_in_page img {
+        width: 100%;
+        height: 700px;
+      }
+      #signup {
+        width: 30%;
+        height: 500px;
+        margin: auto;
+        margin-top: 25px;
+        box-shadow: rgba(182, 182, 201, 0.25) 0px 50px 100px -20px,
+          rgba(223, 202, 202, 0.3) 0px 30px 60px -30px,
+          rgba(195, 201, 206, 0.35) 0px -2px 6px 0px inset;
+        text-align: center;
+        padding-top: 50px;
+        background-color: aliceblue;
+      }
+      .myform {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      select,
+      textarea {
+        width: 70%;
+        padding: 12px;
+        border: 1px solid #c25454;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 40px;
+        margin-bottom: 16px;
+        resize: vertical;
+      }
+
+      input[type="submit"] {
+        background-color: #2b619e;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        width: 70%;
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    </style>
+    <link rel="stylesheet" href="../css/homestyle.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="lower">
+        <nav>
+          <ul>
+            <li><a href="#">LIPS</a></li>
+            <li><a href="#">EYES</a></li>
+            <li><a href="#">SKINCARE</a></li>
+            <li><a href="#">ACCESSORIES</a></li>
+            <li><a href="#">GIFT & KITS</a></li>
+            <li><a href="#">BEST SELLERS</a></li>
+            <li><a href="#">NEW LAUNCHS</a></li>
+            <li><a href="#">OFFER</a></li>
+            <li><a href="#">BLOG</a></li>
+            <li><a href="#">STORES</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="signinpage">
+      <div class="image_for_sign_in_page">
+        <img
+          src="https://media.sugarcosmetics.com/upload/authSIe2.jpg"
+          alt=""
+        />
+      </div>
+      <div id="signup">
+        <h1>Please Enter Your Details</h1>
+        <form class="myform">
+          <input type="text" id="name" placeholder="name" />
+          <input type="email" id="email" placeholder="email" />
+          <input type="password" id="password" placeholder="password" />
+          <input type="submit" value="Submit" />
+          <a href="signin.html">Login</a>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    let globalArr = JSON.parse(localStorage.getItem("account-data"));
+    if (globalArr == null) {
+      globalArr = [];
+    }
+    let myForm = document.querySelector("form");
+    let inpName = document.getElementById("name");
+    let inpEmail = document.getElementById("email");
+    let inpPassward = document.getElementById("password");
+    let submitbt = document.getElementById("Submit");
+
+    myForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      let obj = {
+        name: inpName.value,
+        email: inpEmail.value,
+        password: inpPassward.value,
+      };
+
+      globalArr.push(obj);
+
+      localStorage.setItem("account-data", JSON.stringify(globalArr));
+    });
+  </script>
+</html>
