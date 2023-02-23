@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offers</title>
+  </head>
+  <body>
+    Offers
+  </body>
+  <script>
+    async function fetchData() {
+      try {
+        let res = await fetch(
+          "http://makeup-api.herokuapp.com/api/v1/products.json"
+        ).then((r) => {
+          let d = r.json();
+          console.log(d);
+          displaydata(d);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+    function displaydata(d) {
+      console.log(d);
+    }
+  </script>
+</html>

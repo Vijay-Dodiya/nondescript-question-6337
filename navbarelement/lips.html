@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/homestyle.css" />
+    <link rel="stylesheet" href="../css/lipsstyle.css" />
   </head>
   <body>
     <header>
       <div class="upper">
         <div class="logo">
-          <a href="./index.html">
+          <a href="../index.html">
             <img src="logo1.png" alt="Error for the logo img"
           /></a>
         </div>
@@ -25,7 +26,7 @@
           <button>Serach</button>
         </div>
         <div class="login">
-          <a href="navbarelement\register.html">Login/Register</a>
+          <a href="./register.html">Login/Register</a>
         </div>
         <div class="sidebox">
           <div class="wishlist"><a href="#">Wishlist</a></div>
@@ -50,5 +51,57 @@
         </nav>
       </div>
     </header>
+    <div class="lipsimg">
+      <img
+        src="https://sugar-mobile-application.s3.amazonaws.com/collection-web-banner/Lips.jpg"
+        alt=""
+      />
+    </div>
+    <div id="container1">
+      <div class="aside"></div>
+      <div id="mainside"></div>
+    </div>
   </body>
+  <script>
+    let containerEl = document.getElementById("mainside");
+    async function fetchData() {
+      try {
+        let res = await fetch(
+          "https://63f5ad06ab76703b15af5dcd.mockapi.io/beauty"
+        );
+        let data = await res.json();
+        console.log(data);
+        filterData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+
+    function filterData(data) {
+      displayData(data);
+    }
+    function displayData(data) {
+      // containerEl.innerHTML = null;
+      console.log(data);
+      data.forEach((element) => {
+        let card = document.createElement("div");
+        let imageel = document.createElement("img");
+        imageel.setAttribute("src", element.image);
+        let name = document.createElement("h3");
+        name.textContent = element.name;
+        let price = document.createElement("p");
+        price.textContent = `₹${element.price}`;
+        let divforbtn = document.createElement("div");
+        let wishlist = document.createElement("button");
+        wishlist.textContent = "WishList";
+        let addtocart = document.createElement("button");
+        addtocart.textContent = "Add to Cart";
+
+        divforbtn.append(wishlist, addtocart);
+        card.append(imageel, name, price, divforbtn);
+        containerEl.append(card);
+      });
+    }
+  </script>
 </html>
