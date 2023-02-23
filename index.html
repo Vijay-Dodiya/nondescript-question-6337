@@ -21,7 +21,29 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
+    <!-- link the splide slider -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"
+    />
+
     <link rel="stylesheet" href="css\hotdeals.css" />
+    <style>
+      /* section {
+        margin: 2rem;
+      } */
+
+      .splide__slide {
+        background-color: tomato;
+        padding: 6rem 2rem;
+        text-align: center;
+        font-size: 2rem;
+      }
+
+      #second-slider .splide__slide {
+        background-color: BlueViolet;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -67,7 +89,7 @@
       </div>
     </header>
     <div id="slideshow"></div>
-    <section>
+    <!-- <section>
       <h1>----------BESTSELLERS----------</h1>
       <div class="container">
         <div class="swiper mySwiper">
@@ -494,7 +516,7 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
       </div>
-    </section>
+    </section> -->
 
     <!-- HOt deals page -->
     <div class="hot_deals">
@@ -526,13 +548,22 @@
     </div>
 
     <!-- just in -->
-
-    <div class="justin"></div>
+    <div class="swiper-container-1 swiper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+    </div>
+    <div class="swiper-container-2 swiper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+    </div>
   </body>
+
+  <!-- this is for the first bestselling card -->
   <script src="script\slider.js"></script>
 
   <!--This is for the bestseller card -->
-
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <!-- Initialize Swiper -->
   <script>
@@ -557,3 +588,8 @@
     crossorigin="anonymous"
   ></script>
 </html>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
+  <script>
+    new Splide("#first-slider").mount();
+    new Splide("#second-slider").mount();
+  </script> -->
