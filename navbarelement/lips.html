@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Lips</title>
     <link rel="stylesheet" href="../css/homestyle.css" />
     <link rel="stylesheet" href="../css/lipsstyle.css" />
   </head>
@@ -67,7 +67,7 @@
     async function fetchData() {
       try {
         let res = await fetch(
-          "https://63f5ad06ab76703b15af5dcd.mockapi.io/beauty"
+          "https://dodiya0107.github.io/jsonformate/data.json"
         );
         let data = await res.json();
         filterData(data);
@@ -78,6 +78,9 @@
     fetchData();
 
     function filterData(data) {
+      data = data.filter((element) => {
+        return element.category == "lipstick" && element.brand == "nyx";
+      });
       displayData(data);
     }
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -88,11 +91,11 @@
       data.forEach((element) => {
         let card = document.createElement("div");
         let imageel = document.createElement("img");
-        imageel.setAttribute("src", element.image);
+        imageel.setAttribute("src", element.image_link);
         let name = document.createElement("h3");
         name.textContent = element.name;
         let price = document.createElement("p");
-        price.textContent = `₹${element.price}`;
+        price.textContent = `₹${element.price * 10}`;
         let wishlist = document.createElement("button");
         wishlist.textContent = "WishList";
 

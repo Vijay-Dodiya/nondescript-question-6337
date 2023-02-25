@@ -68,13 +68,13 @@
         font-size: 20px;
         margin-top: 20px;
       }
+      alert{
+        width: 50%;
+
+      }
     </style>
   </head>
   <body>
-    <!-- <div class="nav">
-      <a href="./index.html">Signup</a>
-      <a href="./signin.html">Signin</a>
-    </div> -->
     <div class="signinpage">
       <div class="image_for_sign_in_page">
         <img
@@ -116,14 +116,15 @@
           globalArr[i].email == obj.email &&
           globalArr[i].password == obj.password
         ) {
-          displayEl.innerText = "Sign in Successful";
+          alert("Sign in Succesfully")
           return;
         } else {
           flag = false;
         }
       }
       if (flag == false) {
-        displayEl.innerText = "Wrong Credentials";
+       
+        alert("Wrong Credential");
       }
     });
   </script>

@@ -7,23 +7,44 @@
     <title>Product Cart</title>
     <style>
       #cart-container {
-        /* border: 2px solid red; */
+        width: 100%;
+        background-color: aqua;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-gap: 20px;
+        grid-template-rows: auto;
+        gap: 20px;
       }
       #cart-container > div {
+        background-color: bisque;
+        text-align: center;
+        width: 100%;
+        border-radius: 10%;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        padding: 20px;
+        margin: 25px;
+        padding-bottom: 10px;
       }
       #cart-container > div > img {
-        width: 100%;
-        height: 200px;
+        border-radius: 10%;
+        width: 80%;
+        margin: auto;
+        margin-top: 0;
       }
-      #cart-container > div > button {
-        margin-left: 5px;
+      #cart-container > div button {
+        border-radius: 20px;
+        /* margin: 20px; */
+        width: 20%;
+        height: 50px;
+        color: #000000;
+        font-size: 15px;
+        background-color: rgb(255, 89, 89);
+        /* padding: 10px; */
+      }
+      #cart-container > div span {
+        font-size: 20px;
+        font-weight: 600;
       }
     </style>
+    <!-- <link rel="stylesheet" href="css/lipsstyle.css" /> -->
   </head>
   <body>
     <h1 id="total">

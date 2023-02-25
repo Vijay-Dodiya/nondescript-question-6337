@@ -7,14 +7,14 @@ function DisplayData() {
   Cart.forEach((product) => {
     let Card = document.createElement("div");
     let Image = document.createElement("img");
-    let Brand = document.createElement("h2");
+    let Name = document.createElement("h2");
     let Price = document.createElement("h3");
     let Remove = document.createElement("button");
     let Increase = document.createElement("button");
     let Decrease = document.createElement("button");
     let Quantity = document.createElement("span");
-    Image.src = product.image;
-    Brand.textContent = product.brand;
+    Image.src = product.image_link;
+    Name.textContent = product.brand;
     Price.textContent = `₹${product.price}`;
     Quantity.textContent = product.quantity;
     Increase.textContent = "+";
@@ -48,7 +48,7 @@ function DisplayData() {
     }
 
     document.getElementById("cart-total").textContent = sum;
-    Card.append(Image, Brand, Price, Increase, Quantity, Decrease, Remove);
+    Card.append(Image, Name, Price, Increase, Quantity, Decrease, Remove);
     Container.append(Card);
   });
 }
