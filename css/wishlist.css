@@ -1,18 +1,37 @@
 #wishlist-container {
+  width: 100%;
+  background-color: aqua;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
+  grid-template-rows: auto;
+  gap: 20px;
 }
 #wishlist-container > div {
+  background-color: bisque;
+  text-align: center;
+  width: 100%;
+  border-radius: 10%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 20px;
+  margin: 25px;
+  padding-bottom: 10px;
 }
 #wishlist-container > div > img {
-  width: 100%;
-  height: 200px;
+  border-radius: 10%;
+  width: 80%;
+  margin: auto;
+  margin-top: 0;
 }
-#wishlist-container > div > button {
-  /* display: block; */
-  /* margin: auto; */
-  margin-left: 5px;
+#wishlist-container > div button {
+  border-radius: 20px;
+  /* margin: 20px; */
+  width: 20%;
+  height: 50px;
+  color: #000000;
+  font-size: 15px;
+  background-color: rgb(255, 89, 89);
+  /* padding: 10px; */
+}
+#wishlist-container > div span {
+  font-size: 20px;
+  font-weight: 600;
 }

@@ -7,11 +7,13 @@ function DisplayData() {
   wishlistarray.forEach((product) => {
     let Card = document.createElement("div");
     let Image = document.createElement("img");
-    let Brand = document.createElement("h2");
+    // let Brand = document.createElement("h2");
     let Price = document.createElement("h3");
     let Remove = document.createElement("button");
-    Image.src = product.image;
-    Brand.textContent = product.brand;
+    let name = document.createElement("h2");
+    Image.src = product.image_link;
+    name.textContent = product.name;
+    // Brand.textContent = product.brand;
     Price.textContent = `₹${product.price}`;
     Remove.textContent = "Remove";
 
@@ -23,7 +25,7 @@ function DisplayData() {
       DisplayData();
     });
 
-    Card.append(Image, Brand, Price, Remove);
+    Card.append(Image, name, Brand, Price, Remove);
     Container.append(Card);
   });
 }

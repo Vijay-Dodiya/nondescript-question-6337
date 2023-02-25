@@ -5,70 +5,136 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Offers</title>
+    <link rel="stylesheet" href="css/lipsstyle.css" />
+    <link rel="stylesheet" href="css/homestyle.css" />
   </head>
   <body>
-    Offers
-    <div class="main_div">
-      <div class="center_div" id="centerdiv"></div>
+    <header>
+      <div class="upper">
+        <div class="logo">
+          <a href="./index.html">
+            <img src="logo1.png" alt="Error for the logo img"
+          /></a>
+        </div>
+        <div class="search-box">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search Here"
+          />
+          <button>Serach</button>
+        </div>
+        <div class="login">
+          <a href="navbarelement\register.html">Login/Register</a>
+        </div>
+        <div class="sidebox">
+          <div class="wishlist"><a href="./wishlist.html">Wishlist</a></div>
+          <div class="cart"><a href="./cart.html">Cart</a></div>
+          <div class="offer"><a href="./offer.html">Offer</a></div>
+        </div>
+      </div>
+      <div class="lower">
+        <nav>
+          <ul>
+            <li><a href="navbarelement\lips.html">LIPS</a></li>
+            <li><a href="navbarelement\eyes.html">EYES</a></li>
+            <li><a href="navbarelement\skincare.html">SKINCARE</a></li>
+            <li><a href="navbarelement\accessories.html">ACCESSORIES</a></li>
+            <li><a href="navbarelement\gifts.html">GIFT & KITS</a></li>
+            <li><a href="navbarelement\bestseller.html">BEST SELLERS</a></li>
+            <li><a href="navbarelement\newlaunch.html">NEW LAUNCHS</a></li>
+            <li><a href="navbarelement\offer.html">OFFER</a></li>
+            <li><a href="navbarelement\blog.html">BLOG</a></li>
+            <li><a href="navbarelement\stores.html">STORES</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div id="container1">
+      <div class="aside"></div>
+      <div id="mainside"></div>
     </div>
   </body>
   <script>
-    let centerDiv = document.getElementById("centerdiv");
+    let containerEl = document.getElementById("mainside");
     async function fetchData() {
       try {
         let res = await fetch(
-          "http://makeup-api.herokuapp.com/api/v1/products.json"
+          "https://dodiya0107.github.io/jsonformate/data.json"
         );
         let data = await res.json();
-        return data;
+        filterData(data);
       } catch (error) {
         console.log(error);
       }
     }
-
-    fetchData()
-      .then((res) => {
-        console.log(res);
-        displaydata(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     fetchData();
-    function displaydata(resultArray) {
-      console.log(resultArray);
 
-      resultArray.map((ele) => {
-        console.log(ele.image_link);
+    function filterData(data) {
+      data = data.filter((element) => {
+        return element.brand == "covergirl";
       });
-      resultArray.forEach((element) => {
-        let image = document.createElement("img");
-        image.setAttribute("src", element.image_link);
-        let brandEl = document.createElement("p");
-        brandEl.innerText = element.brand;
-        centerDiv.append(brandEl, image);
+      displayData(data);
+    }
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let wishlistarray = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    function displayData(data) {
+      containerEl.innerHTML = null;
+      data.forEach((element) => {
+        let card = document.createElement("div");
+        let imageel = document.createElement("img");
+        imageel.setAttribute("src", element.image_link);
+        let name = document.createElement("h3");
+        name.textContent = element.name;
+        let price = document.createElement("p");
+        price.textContent = `₹${element.price * 10}`;
+        let wishlist = document.createElement("button");
+        wishlist.textContent = "WishList";
+
+        wishlist.addEventListener("click", () => {
+          if (duplicate1(element)) {
+            alert("Product Already in Cart");
+          } else {
+            wishlistarray.push({ ...element });
+            localStorage.setItem("wishlist", JSON.stringify(wishlistarray));
+            alert("Product Added To Cart");
+          }
+        });
+        let addtocart = document.createElement("button");
+        addtocart.textContent = "Add to Cart";
+
+        addtocart.addEventListener("click", () => {
+          if (duplicate(element)) {
+            alert("Product Already in Cart");
+          } else {
+            cart.push({ ...element, quantity: 1 });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert("Product Added To Cart");
+          }
+        });
+
+        card.append(imageel, name, price, wishlist, addtocart);
+        containerEl.append(card);
       });
-      //   let result = resultArray.filter((e) => {
-      //     return `${e.brand}` == "nyx";
-      //   });
-      //   console.log(result);
+    }
+
+    function duplicate(element) {
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id == element.id) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function duplicate1(element) {
+      for (let i = 0; i < wishlistarray.length; i++) {
+        if (wishlistarray[i].id == element.id) {
+          return true;
+        }
+      }
+      return false;
     }
   </script>
-  <!-- <script>
-    const centerDiv = document.getElementById("centerdiv");
-
-    fetch("https://jsonplaceholder.typicode.com/photos?_limit=35")
-      .then((apidata) => {
-        return apidata.json();
-      })
-      .then((jsondata) => {
-        jsondata.map((val) => {
-          key = val.id;
-          let img = document.createElement("img");
-          img.src = `https://picsum.photos/200/350?random=${key}`;
-
-          centerDiv.appendChild(img);
-        });
-      });
-  </script> -->
 </html>

@@ -12,7 +12,7 @@
     <header>
       <div class="upper">
         <div class="logo">
-          <a href="./index.html">
+          <a href="../index.html">
             <img src="logo1.png" alt="Error for the logo img"
           /></a>
         </div>
@@ -29,9 +29,9 @@
           <a href="./register.html">Login/Register</a>
         </div>
         <div class="sidebox">
-          <div class="wishlist"><a href="#">Wishlist</a></div>
-          <div class="cart"><a href="#">Cart</a></div>
-          <div class="offer"><a href="#">Offer</a></div>
+          <div class="wishlist"><a href="../wishlist.html">Wishlist</a></div>
+          <div class="cart"><a href="../cart.html">Cart</a></div>
+          <div class="offer"><a href="../offer.html">Offer</a></div>
         </div>
       </div>
       <div class="lower">
@@ -51,6 +51,12 @@
         </nav>
       </div>
     </header>
+    <div class="lipsimg">
+      <img
+        src="https://sugar-mobile-application.s3.amazonaws.com/collection-web-banner/Lips.jpg"
+        alt=""
+      />
+    </div>
     <div id="container1">
       <div class="aside"></div>
       <div id="mainside"></div>
@@ -61,10 +67,9 @@
     async function fetchData() {
       try {
         let res = await fetch(
-          "https://63f5ad06ab76703b15af5dcd.mockapi.io/beauty"
+          "https://dodiya0107.github.io/jsonformate/data.json"
         );
         let data = await res.json();
-        console.log(data);
         filterData(data);
       } catch (error) {
         console.log(error);
@@ -75,27 +80,64 @@
     function filterData(data) {
       displayData(data);
     }
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let wishlistarray = JSON.parse(localStorage.getItem("wishlist")) || [];
+
     function displayData(data) {
-      // containerEl.innerHTML = null;
-      console.log(data);
+      containerEl.innerHTML = null;
       data.forEach((element) => {
         let card = document.createElement("div");
         let imageel = document.createElement("img");
-        imageel.setAttribute("src", element.image);
+        imageel.setAttribute("src", element.image_link);
         let name = document.createElement("h3");
         name.textContent = element.name;
         let price = document.createElement("p");
-        price.textContent = `₹${element.price}`;
-        let divforbtn = document.createElement("div");
+        price.textContent = `₹${element.price * 10}`;
         let wishlist = document.createElement("button");
         wishlist.textContent = "WishList";
+
+        wishlist.addEventListener("click", () => {
+          if (duplicate1(element)) {
+            alert("Product Already in Cart");
+          } else {
+            wishlistarray.push({ ...element });
+            localStorage.setItem("wishlist", JSON.stringify(wishlistarray));
+            alert("Product Added To Cart");
+          }
+        });
         let addtocart = document.createElement("button");
         addtocart.textContent = "Add to Cart";
 
-        divforbtn.append(wishlist, addtocart);
-        card.append(imageel, name, price, divforbtn);
+        addtocart.addEventListener("click", () => {
+          if (duplicate(element)) {
+            alert("Product Already in Cart");
+          } else {
+            cart.push({ ...element, quantity: 1 });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert("Product Added To Cart");
+          }
+        });
+
+        card.append(imageel, name, price, wishlist, addtocart);
         containerEl.append(card);
       });
+    }
+
+    function duplicate(element) {
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id == element.id) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function duplicate1(element) {
+      for (let i = 0; i < wishlistarray.length; i++) {
+        if (wishlistarray[i].id == element.id) {
+          return true;
+        }
+      }
+      return false;
     }
   </script>
 </html>
