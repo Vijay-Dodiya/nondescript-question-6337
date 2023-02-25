@@ -38,13 +38,9 @@
     function displaydata(resultArray) {
       console.log(resultArray);
 
-      //   resultArray.map((ele) => {
-      //     if (ele.image_link === "Not Found") {
-      //       console.log("this is not found");
-      //     } else {
-      //       console.log(ele.image_link);
-      //     }
-      //   });
+      resultArray.map((ele) => {
+        console.log(ele.image_link);
+      });
       resultArray.forEach((element) => {
         let image = document.createElement("img");
         image.setAttribute("src", element.image_link);
@@ -52,10 +48,10 @@
         brandEl.innerText = element.brand;
         centerDiv.append(brandEl, image);
       });
-      let result = resultArray.filter((e) => {
-        return `${e.brand}` == "nyx";
-      });
-      console.log(result);
+      //   let result = resultArray.filter((e) => {
+      //     return `${e.brand}` == "nyx";
+      //   });
+      //   console.log(result);
     }
   </script>
   <!-- <script>

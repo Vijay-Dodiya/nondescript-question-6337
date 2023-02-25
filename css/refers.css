@@ -1,0 +1,12 @@
+.refer {
+  width: 96%;
+  text-align: center;
+  margin: auto;
+  margin-top: 25px;
+  padding: 10px;
+}
+.refer img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
