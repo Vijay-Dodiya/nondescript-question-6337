@@ -58,86 +58,21 @@
       />
     </div>
     <div id="container1">
-      <div class="aside"></div>
-      <div id="mainside"></div>
+      <div
+        class="aside"
+        style="width: 100%; height: 100vh; background-color: rgb(159, 140, 140)"
+      >
+        <select name="" id="filter">
+          <option value="">Places where we located</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Banglore">Banglore</option>
+          <option value="Hydrabad">Hydrabad</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Indore">Indore</option>
+          <option value="Ujjain">Ujjain</option>
+        </select>
+      </div>
     </div>
   </body>
-  <script>
-    let containerEl = document.getElementById("mainside");
-    async function fetchData() {
-      try {
-        let res = await fetch(
-          "https://63f5ad06ab76703b15af5dcd.mockapi.io/beauty"
-        );
-        let data = await res.json();
-        filterData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-
-    function filterData(data) {
-      displayData(data);
-    }
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let wishlistarray = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    function displayData(data) {
-      containerEl.innerHTML = null;
-      data.forEach((element) => {
-        let card = document.createElement("div");
-        let imageel = document.createElement("img");
-        imageel.setAttribute("src", element.image);
-        let name = document.createElement("h3");
-        name.textContent = element.name;
-        let price = document.createElement("p");
-        price.textContent = `₹${element.price}`;
-        let wishlist = document.createElement("button");
-        wishlist.textContent = "WishList";
-
-        wishlist.addEventListener("click", () => {
-          if (duplicate1(element)) {
-            alert("Product Already in Cart");
-          } else {
-            wishlistarray.push({ ...element });
-            localStorage.setItem("wishlist", JSON.stringify(wishlistarray));
-            alert("Product Added To Cart");
-          }
-        });
-        let addtocart = document.createElement("button");
-        addtocart.textContent = "Add to Cart";
-
-        addtocart.addEventListener("click", () => {
-          if (duplicate(element)) {
-            alert("Product Already in Cart");
-          } else {
-            cart.push({ ...element, quantity: 1 });
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert("Product Added To Cart");
-          }
-        });
-
-        card.append(imageel, name, price, wishlist, addtocart);
-        containerEl.append(card);
-      });
-    }
-
-    function duplicate(element) {
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id == element.id) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function duplicate1(element) {
-      for (let i = 0; i < wishlistarray.length; i++) {
-        if (wishlistarray[i].id == element.id) {
-          return true;
-        }
-      }
-      return false;
-    }
-  </script>
 </html>

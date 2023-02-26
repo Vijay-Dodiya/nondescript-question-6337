@@ -58,7 +58,13 @@
       />
     </div>
     <div id="container1">
-      <div class="aside"></div>
+      <div class="aside">
+        <select name="filtering" id="filter">
+          <option value="Default">Default</option>
+          <option value="low to high">Low to High</option>
+          <option value="high to low">High to Low</option>
+        </select>
+      </div>
       <div id="mainside"></div>
     </div>
   </body>
@@ -77,11 +83,35 @@
     }
     fetchData();
 
+    //  This is filter and sort part
+
+    let filterEl = document.getElementById("filter");
+    filterEl.addEventListener("change", () => {
+      fetchData();
+    });
     function filterData(data) {
-      data = data.filter((element) => {
-        return element.brand == "clinique";
-      });
-      displayData(data);
+      if (filterEl.value == "Default") {
+        data = data.filter((element) => {
+          return element.brand == "clinique";
+        });
+        displayData(data);
+      } else if (filterEl.value == "low to high") {
+        let filtered = data.filter((element) => {
+          return element.brand == "clinique";
+        });
+        filtered = filtered.sort((a, b) => {
+          return a.price - b.price;
+        });
+        displayData(filtered);
+      } else if (filterEl.value == "high to low") {
+        let filtered = data.filter((element) => {
+          return element.brand == "clinique";
+        });
+        filtered = filtered.sort((a, b) => {
+          return b.price - a.price;
+        });
+        displayData(filtered);
+      }
     }
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let wishlistarray = JSON.parse(localStorage.getItem("wishlist")) || [];
