@@ -5,26 +5,32 @@
   margin-top: 20px;
 }
 .aside {
-  width: 25%;
-  background-color: aquamarine;
+  width: 18%;
+  background-color: rgb(217, 217, 217);
 }
+#filter {
+  width: 90%;
+  height: 40px;
+  display: block;
+  margin: auto;
+  font-size: 30px;
+  font-weight: 600;
+}
+
 #mainside {
-  width: 75%;
-  background-color: aqua;
+  width: 80%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
-  gap: 20px;
+  gap: 30px;
+  margin-left: 10px;
 }
 #mainside > div {
-  background-color: bisque;
+  /* background-color: rgb(194, 194, 194); */
   text-align: center;
   width: 100%;
   border-radius: 10%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  /* padding: 10px; */
-  padding-bottom: 10px;
-  margin: 25px;
 }
 #mainside div img {
   border-radius: 10%;
